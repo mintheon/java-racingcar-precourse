@@ -1,5 +1,7 @@
 package race;
 
+import java.util.Collections;
+
 public class Car {
     private final CarName carName;
     private final Engine engine;
@@ -23,5 +25,12 @@ public class Car {
         if (engine.canMove()) {
             position.increasePosition();
         }
+    }
+
+    public void print() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(carName).append(": ").append(String.join("", Collections.nCopies(position.getPosition(), "-")));
+
+        System.out.println(sb);
     }
 }

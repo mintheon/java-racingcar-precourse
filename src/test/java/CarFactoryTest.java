@@ -1,3 +1,4 @@
+import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import race.Car;
@@ -14,7 +15,7 @@ public class CarFactoryTest {
     @Test
     @DisplayName("자동차_3개_생성_할_경우")
     public void car_generate() {
-        List<Car> cars = carFactory.generateCars("pobi,crong,honux");
+        List<Car> cars = carFactory.generateCars(Arrays.array("pobi", "crong", "honux"));
 
         assertAll(
                 () -> assertEquals(cars.size(), 3),
