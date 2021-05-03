@@ -1,5 +1,7 @@
 package race;
 
+import race.enums.CarStatus;
+
 import java.util.Collections;
 
 public class Car {
@@ -22,14 +24,14 @@ public class Car {
     }
 
     public void move() {
-        if (engine.canMove()) {
+        if (engine.getMoveStatus() == CarStatus.GO) {
             position.increasePosition();
         }
     }
 
     public void print() {
         StringBuilder sb = new StringBuilder();
-        sb.append(carName).append(": ").append(String.join("", Collections.nCopies(position.getPosition(), "-")));
+        sb.append(getCarName()).append(": ").append(String.join("", Collections.nCopies(getPosition(), "-")));
 
         System.out.println(sb);
     }
