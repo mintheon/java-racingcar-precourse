@@ -4,6 +4,7 @@ import race.enums.CarStatus;
 import race.enums.PositionState;
 
 import java.util.Collections;
+import java.util.Random;
 
 public class Car implements Comparable<Car> {
     private final CarName carName;
@@ -24,8 +25,8 @@ public class Car implements Comparable<Car> {
         return position.getPosition();
     }
 
-    public void move() {
-        if (engine.getMoveStatus() == CarStatus.GO) {
+    public void move(Random random) {
+        if (engine.move(random) == CarStatus.GO) {
             position.increasePosition();
         }
     }

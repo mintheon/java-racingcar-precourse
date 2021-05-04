@@ -5,8 +5,10 @@ import race.enums.PositionState;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class Cars {
+    private static final Random random = new Random();
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -15,7 +17,7 @@ public class Cars {
 
     public void accelerate() {
         for (Car car : cars) {
-            car.move();
+            car.move(random);
         }
     }
 
