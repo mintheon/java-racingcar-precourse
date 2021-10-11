@@ -3,6 +3,7 @@ package racinggame.domain;
 import racinggame.enums.Error;
 
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class CarName {
     public static final int MIN_LENGTH = 1, MAX_LENGTH = 5;
@@ -36,5 +37,10 @@ public class CarName {
         CarName target = (CarName) o;
 
         return name.equals(target.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

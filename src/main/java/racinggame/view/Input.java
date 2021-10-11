@@ -6,6 +6,7 @@ import racinggame.enums.Error;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class Input {
@@ -21,7 +22,7 @@ public class Input {
                         .map(name -> new CarName(name))
                         .collect(Collectors.toList());
 
-            } catch (IllegalArgumentException e) {
+            } catch (NoSuchElementException e) {
                 Output.print(e.getMessage());
             }
         }
