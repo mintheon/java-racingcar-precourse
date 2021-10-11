@@ -12,11 +12,13 @@ public class Race {
     }
 
     public void play() {
-        System.out.println("실행결과");
+        System.out.println("\n실행결과");
 
         for (int i = 0; i < round; i++) {
             staging();
         }
+
+        Output.printWinner(cars);
     }
 
     public void staging() {

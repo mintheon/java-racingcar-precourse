@@ -1,6 +1,6 @@
 package racinggame.domain;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private final CarName name;
     private final Engine engine;
     private final Position position;
@@ -24,5 +24,14 @@ public class Car {
         if (engine.canMove()) {
             position.increase();
         }
+    }
+
+    public boolean comparePosition(Car target) {
+        return this.compareTo(target) == 0;
+    }
+
+    @Override
+    public int compareTo(Car target) {
+        return position.compareTo(target.position);
     }
 }
