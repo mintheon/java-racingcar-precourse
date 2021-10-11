@@ -2,25 +2,28 @@ package racinggame.domain;
 
 import racinggame.enums.Error;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class CarFactory {
-    public Cars generateCars(String[] inputNames) {
+    public static final Cars generateCars(List<CarName> inputNames) {
         if (isDuplicate(inputNames)) {
             throw new IllegalArgumentException(Error.DUPLICATE_CAR_NAME.message());
         }
 
         List<Car> cars = new ArrayList<>();
-        for (String name : inputNames) {
-            cars.add(new Car(new CarName(name), new Engine(), new Position()));
+        for (CarName name : inputNames) {
+            cars.add(new Car(name, new Engine(), new Position()));
         }
 
         return new Cars(cars);
     }
 
-    private boolean isDuplicate(String[] inputNames) {
-        Set<String> names = new HashSet<>(Arrays.asList(inputNames));
+    private static boolean isDuplicate(List<CarName> names) {
+        Set<CarName> validNames = new HashSet<>(names);
 
-        return names.size() != inputNames.length;
+        return validNames.size() != names.size();
     }
 }

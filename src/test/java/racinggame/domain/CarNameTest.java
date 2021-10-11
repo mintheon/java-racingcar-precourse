@@ -17,13 +17,13 @@ class CarNameTest {
     public void 자동차_이름_공백시작_확인() {
         assertThatThrownBy(() -> new CarName(" "))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(Error.WORNG_CAR_NAME.message());
+                .hasMessageContaining(Error.WRONG_CAR_NAME.message());
     }
 
     @Test
     public void 자동차_이름길이_초과_확인() {
         assertThatThrownBy(() -> new CarName("mintheon"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(Error.WORNG_CAR_NAME.message());
+                .hasMessageContaining(Error.WRONG_CAR_NAME.message());
     }
 }
