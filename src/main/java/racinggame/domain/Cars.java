@@ -1,8 +1,8 @@
 package racinggame.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Cars {
     List<Car> cars;
@@ -20,10 +20,15 @@ public class Cars {
     public String getWinners() {
         Car maxPositionCar = Collections.max(cars);
 
-        return cars.stream()
-                .filter(car -> car.comparePosition(maxPositionCar))
-                .map(Car::getName)
-                .collect(Collectors.joining(","));
+        List<String> winners = new ArrayList<>();
+
+        for (Car car : cars) {
+            if (car.comparePosition(maxPositionCar)) {
+                winners.add(car.getName());
+            }
+        }
+
+        return String.join(",", winners);
     }
 
     @Override

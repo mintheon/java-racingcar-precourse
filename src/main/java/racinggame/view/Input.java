@@ -4,11 +4,10 @@ import nextstep.utils.Console;
 import racinggame.domain.CarName;
 import racinggame.enums.Error;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Input {
     private static final String INPUT_NAMES = "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)";
@@ -19,9 +18,13 @@ public class Input {
             Output.print(INPUT_NAMES);
 
             try {
-                List<CarName> carNames = Arrays.asList(Console.readLine().split(",")).stream()
-                        .map(name -> new CarName(name))
-                        .collect(Collectors.toList());
+                String[] inputNames = Console.readLine().split(",");
+
+                List<CarName> carNames = new ArrayList<>();
+
+                for (String inputName : inputNames) {
+                    carNames.add(new CarName(inputName));
+                }
 
                 duplicateCheck(carNames);
 
