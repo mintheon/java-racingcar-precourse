@@ -2,10 +2,10 @@ package racinggame.view;
 
 import org.junit.jupiter.api.Test;
 import racinggame.domain.CarName;
+import racinggame.enums.Error;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
@@ -13,14 +13,16 @@ class InputTest {
 
     @Test
     public void 중복_자동차_생성_확인() {
-        List<CarName> carNames = Arrays.asList("pobi,crong,pobi".split(","))
-                .stream()
-                .map(name -> new CarName((String) name))
-                .collect(Collectors.toList());
+        List<CarName> carNames = new ArrayList<>();
+
+        String[] inputNames = "pobi,crong,pobi".split(",");
+        for (String inputName : inputNames) {
+            carNames.add(new CarName(inputName));
+        }
 
         assertThatThrownBy(() -> Input.duplicateCheck(carNames))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]");
+                .hasMessageContaining(Error.DUPLICATE_CAR_NAME.message());
     }
 
     @Test
