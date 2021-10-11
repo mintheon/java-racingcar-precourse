@@ -5,7 +5,9 @@ import racinggame.domain.CarName;
 import racinggame.enums.Error;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Input {
@@ -13,24 +15,35 @@ public class Input {
     private static final String INPUT_ROUND = "시도할 회수는 몇회인가요?";
 
     public static List<CarName> names() {
-        System.out.println(INPUT_NAMES);
-
         while (true) {
+            Output.print(INPUT_NAMES);
+
             try {
-                return Arrays.asList(Console.readLine().split(",")).stream()
+                List<CarName> carNames = Arrays.asList(Console.readLine().split(",")).stream()
                         .map(name -> new CarName(name))
                         .collect(Collectors.toList());
 
+                duplicateCheck(carNames);
+
+                return carNames;
             } catch (IllegalArgumentException e) {
                 Output.print(e.getMessage());
             }
         }
     }
 
-    public static int round() {
-        System.out.println(INPUT_ROUND);
+    private static void duplicateCheck(List<CarName> names) {
+        Set<CarName> validNames = new HashSet<>(names);
 
+        if (validNames.size() != names.size()) {
+            throw new IllegalArgumentException(Error.DUPLICATE_CAR_NAME.message());
+        }
+    }
+
+    public static int round() {
         while (true) {
+            Output.print(INPUT_ROUND);
+
             try {
                 int inputNumber = parseNumber(Console.readLine());
 

@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class CarFactoryTest {
 
@@ -21,17 +20,5 @@ class CarFactoryTest {
         Cars cars = CarFactory.generateCars(carNames);
 
         assertThat(cars.toString()).contains("pobi", "crong", "honux");
-    }
-
-    @Test
-    public void 중복_자동차_생성_확인() {
-        List<CarName> carNames = Arrays.asList("pobi,crong,pobi".split(","))
-                .stream()
-                .map(name -> new CarName((String) name))
-                .collect(Collectors.toList());
-
-        assertThatThrownBy(() -> CarFactory.generateCars(carNames))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]");
     }
 }
