@@ -32,7 +32,7 @@ public class Cars {
 
         for (Car car : cars) {
             sb.append(car.getName())
-                    .append(": ")
+                    .append(" : ")
                     .append(String.join("", Collections.nCopies(car.getPosition(), "-")))
                     .append("\n");
         }

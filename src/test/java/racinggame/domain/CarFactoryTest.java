@@ -4,7 +4,6 @@ import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -32,7 +31,7 @@ class CarFactoryTest {
                 .collect(Collectors.toList());
 
         assertThatThrownBy(() -> CarFactory.generateCars(carNames))
-                .isInstanceOf(NoSuchElementException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
 }

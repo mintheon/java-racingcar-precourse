@@ -2,7 +2,6 @@ package racinggame.domain;
 
 import racinggame.enums.Error;
 
-import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class CarName {
@@ -14,7 +13,7 @@ public class CarName {
         String trimName = inputName.trim();
 
         if (trimName.length() < MIN_LENGTH || trimName.length() > MAX_LENGTH) {
-            throw new NoSuchElementException(Error.WRONG_CAR_NAME.message());
+            throw new IllegalArgumentException(Error.WRONG_CAR_NAME.message());
         }
 
         this.name = trimName;

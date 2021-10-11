@@ -3,8 +3,6 @@ package racinggame.domain;
 import org.junit.jupiter.api.Test;
 import racinggame.enums.Error;
 
-import java.util.NoSuchElementException;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
@@ -18,14 +16,14 @@ class CarNameTest {
     @Test
     public void 자동차_이름_공백시작_확인() {
         assertThatThrownBy(() -> new CarName(" "))
-                .isInstanceOf(NoSuchElementException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(Error.WRONG_CAR_NAME.message());
     }
 
     @Test
     public void 자동차_이름길이_초과_확인() {
         assertThatThrownBy(() -> new CarName("mintheon"))
-                .isInstanceOf(NoSuchElementException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(Error.WRONG_CAR_NAME.message());
     }
 }
