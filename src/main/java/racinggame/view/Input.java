@@ -32,7 +32,7 @@ public class Input {
         }
     }
 
-    private static void duplicateCheck(List<CarName> names) {
+    public static void duplicateCheck(List<CarName> names) {
         Set<CarName> validNames = new HashSet<>(names);
 
         if (validNames.size() != names.size()) {
@@ -54,7 +54,7 @@ public class Input {
         }
     }
 
-    private static int parseNumber(String inputNumber) {
+    public static int parseNumber(String inputNumber) {
         return Integer.parseInt(inputNumber);
     }
 }
